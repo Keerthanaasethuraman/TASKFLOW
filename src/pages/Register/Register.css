@@ -1,0 +1,64 @@
+@import "../Login/Login.css";
+
+/* Register specific styles */
+
+.register-page{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+.register-card{
+
+    width:500px;
+
+    padding:42px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.8);
+
+    box-shadow:
+        0 25px 70px rgba(15,23,42,.12);
+
+}
+
+.login-link{
+
+    text-align:center;
+
+    margin-top:28px;
+
+    color:#64748b;
+
+}
+
+.login-link a{
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+.login-link a:hover{
+
+    text-decoration:underline;
+
+}

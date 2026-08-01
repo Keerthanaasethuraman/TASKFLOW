@@ -1,0 +1,421 @@
+/* =========================================
+   DASHBOARD
+========================================= */
+
+.dashboard{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:24px;
+
+}
+
+.header-left h1{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:54px;
+
+    color:#171717;
+
+    margin-top:4px;
+
+}
+
+.welcome-text{
+
+    color:#8b8b8b;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.header-left p{
+
+    margin-top:8px;
+
+    color:#6b7280;
+
+    max-width:500px;
+
+    line-height:1.6;
+
+}
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* =========================================
+   STATS
+========================================= */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.dashboard-main{
+
+    display:grid;
+
+    grid-template-columns:1.5fr 1fr;
+
+    gap:24px;
+
+}
+
+.left-panel,
+.right-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.filter-row{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+/* =========================================
+   TASK SECTION
+========================================= */
+
+.task-section{
+
+    background:white;
+
+    border-radius:28px;
+
+    padding:28px;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.05);
+
+}
+
+.task-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+
+}
+
+.task-header h2{
+
+    font-size:28px;
+
+    color:#171717;
+
+}
+
+.task-header span{
+
+    background:#eef4ff;
+
+    color:#4169e1;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+/* =========================================
+   TASK GRID
+========================================= */
+
+.task-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+
+    gap:20px;
+
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state{
+
+    padding:70px 20px;
+
+    text-align:center;
+
+    border:2px dashed #d7ddeb;
+
+    border-radius:24px;
+
+    background:#fbfcff;
+
+}
+
+.empty-state h3{
+
+    font-size:28px;
+
+    color:#171717;
+
+    margin-bottom:10px;
+
+}
+
+.empty-state p{
+
+    color:#7b8190;
+
+    font-size:15px;
+
+}
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.progress-wrapper{
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:24px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.05);
+
+}
+
+/* =========================================
+   BUTTON IMPROVEMENTS
+========================================= */
+
+button{
+
+    transition:.25s ease;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* =========================================
+   CARD EFFECT
+========================================= */
+
+.stat-card,
+.task-card,
+.next-up,
+.today-schedule{
+
+    background:white;
+
+    border-radius:24px;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.05);
+
+}
+
+/* =========================================
+   PREMIUM SPACING
+========================================= */
+
+.task-card{
+
+    transition:.25s;
+
+}
+
+.task-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 22px 45px rgba(0,0,0,.08);
+
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1200px){
+
+.stats-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.dashboard-main{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:900px){
+
+.dashboard-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.header-right{
+
+    width:100%;
+
+    flex-wrap:wrap;
+
+}
+
+.task-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.stats-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.header-left h1{
+
+    font-size:40px;
+
+}
+
+.task-section{
+
+    padding:18px;
+
+}
+
+}
+/* =========================================
+   PREMIUM LAYOUT
+========================================= */
+
+.dashboard-content{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:28px;
+
+    align-items:start;
+
+}
+
+.dashboard-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.dashboard-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.task-section{
+
+    margin:0;
+
+}
+
+.task-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+@media(max-width:1100px){
+
+.dashboard-content{
+
+    grid-template-columns:1fr;
+
+}
+
+}

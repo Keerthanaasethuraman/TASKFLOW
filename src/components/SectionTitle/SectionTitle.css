@@ -1,0 +1,16 @@
+.section-title {
+  margin-bottom: 24px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+}
+
+.section-title p {
+  margin-top: 6px;
+  color: #666;
+  font-size: 15px;
+}

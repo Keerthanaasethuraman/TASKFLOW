@@ -1,0 +1,408 @@
+/* ===========================
+   PAGE
+=========================== */
+
+.login-page{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #dfe8ff 0%,
+            #edf4ff 45%,
+            #f8f5ef 100%
+        );
+
+    font-family:"Inter",sans-serif;
+
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.login-card{
+
+    width:460px;
+
+    padding:42px;
+
+    border-radius:30px;
+
+    background:
+        rgba(255,255,255,.72);
+
+    backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.8);
+
+    box-shadow:
+        0 25px 70px rgba(15,23,42,.12);
+
+}
+
+/* ===========================
+   BRAND
+=========================== */
+
+.brand{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.brand h1{
+
+    margin:0;
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#171717;
+
+}
+
+.brand p{
+
+    margin-top:8px;
+
+    color:#6b7280;
+
+}
+
+/* ===========================
+   WELCOME
+=========================== */
+
+.welcome{
+
+    margin-bottom:28px;
+
+}
+
+.welcome h2{
+
+    margin:0;
+
+    font-size:30px;
+
+    color:#171717;
+
+}
+
+.welcome p{
+
+    margin-top:10px;
+
+    color:#6b7280;
+
+    line-height:1.6;
+
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.input-box{
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:0 18px;
+
+    margin-bottom:18px;
+
+    border-radius:18px;
+
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    transition:.25s;
+
+}
+
+.input-box:focus-within{
+
+    border-color:#2563eb;
+
+    box-shadow:
+        0 10px 28px rgba(37,99,235,.12);
+
+}
+
+.input-box svg{
+
+    color:#64748b;
+
+}
+
+.input-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+
+}
+
+.eye-btn{
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    color:#64748b;
+
+}
+/* ===========================
+   OPTIONS
+=========================== */
+
+.login-options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:10px 0 26px;
+
+    font-size:14px;
+
+}
+
+.login-options label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#475569;
+
+    cursor:pointer;
+
+}
+
+.login-options input{
+
+    width:16px;
+
+    height:16px;
+
+    cursor:pointer;
+
+}
+
+.login-options a{
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+.login-options a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.button{
+
+    width:100%;
+
+    height:56px;
+
+    justify-content:center;
+
+    font-size:16px;
+
+    border-radius:18px;
+
+}
+
+/* ===========================
+   DIVIDER
+=========================== */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    margin:28px 0;
+
+}
+
+.divider::before,
+
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:#e5e7eb;
+
+}
+
+.divider span{
+
+    padding:0 18px;
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+   GOOGLE BUTTON
+=========================== */
+
+.google-btn{
+
+    width:100%;
+
+    height:56px;
+
+    border-radius:18px;
+
+    border:1px solid #dbe4f0;
+
+    background:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#374151;
+
+    transition:.25s;
+
+}
+
+.google-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(15,23,42,.08);
+
+}
+
+/* ===========================
+   REGISTER
+=========================== */
+
+.register{
+
+    text-align:center;
+
+    margin-top:28px;
+
+    color:#64748b;
+
+}
+
+.register a{
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+.register a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:600px){
+
+.login-page{
+
+    padding:20px;
+
+}
+
+.login-card{
+
+    width:100%;
+
+    padding:30px 24px;
+
+}
+
+.brand h1{
+
+    font-size:34px;
+
+}
+
+.welcome h2{
+
+    font-size:24px;
+
+}
+
+.login-options{
+
+    flex-direction:column;
+
+    gap:12px;
+
+    align-items:flex-start;
+
+}
+
+}

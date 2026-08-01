@@ -1,0 +1,26 @@
+.layout{
+
+    display:flex;
+
+    align-items:stretch;
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        180deg,
+        #dfe8ff 0%,
+        #edf4ff 40%,
+        #f8f5ef 100%
+    );
+}
+
+.content{
+
+    flex:1;
+
+    padding:40px;
+
+    overflow-y:auto;
+
+}

@@ -1,0 +1,39 @@
+.schedule-card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.05);
+}
+
+.schedule-card h2 {
+  margin: 0 0 24px;
+  color: #2f2f2f;
+}
+
+.schedule-item {
+  display: flex;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid #ece7e2;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-time {
+  min-width: 80px;
+  font-weight: 600;
+  color: #8a6a52;
+}
+
+.schedule-details h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #2f2f2f;
+}
+
+.schedule-details span {
+  font-size: 14px;
+  color: #7a7a7a;
+}

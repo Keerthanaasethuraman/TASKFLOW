@@ -1,0 +1,31 @@
+:root {
+  /* ===== COLORS ===== */
+  --background: #F7F2EB;
+  --surface: #FFFDFC;
+  --sidebar: #1F1814;
+
+  --primary: #A67C52;
+  --primary-light: #CDB79E;
+
+  --text-primary: #1F1814;
+  --text-secondary: #5E564F;
+  --text-muted: #9C8F84;
+
+  --border: #E7DDD3;
+
+  --success: #7C9A6D;
+  --warning: #D8A24C;
+  --danger: #B45A4F;
+
+  /* ===== BORDER RADIUS ===== */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+
+  /* ===== ANIMATION ===== */
+  --transition: all 0.3s ease;
+}

@@ -1,0 +1,39 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge.high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.badge.medium {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.badge.low {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.badge.completed {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.badge.pending {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.badge.default {
+  background: #f5f5f5;
+  color: #444;
+}

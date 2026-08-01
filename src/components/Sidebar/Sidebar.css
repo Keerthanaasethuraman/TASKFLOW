@@ -1,0 +1,449 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@600;700&display=swap");
+
+/* ===================================================
+   SIDEBAR
+=================================================== */
+.sidebar{
+
+    width:310px;
+
+    min-width:310px;
+
+    height:auto;
+
+    align-self:stretch;
+
+    margin:16px;
+
+    padding:28px;
+
+    border-radius:34px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.82),
+            rgba(250,252,255,.95)
+        );
+
+    backdrop-filter:blur(24px);
+
+    box-shadow:
+        0 25px 60px rgba(25,35,70,.08);
+
+}
+
+/* ===================================================
+   LOGO
+=================================================== */
+
+.sidebar-logo{
+
+    margin-bottom:28px;
+
+}
+
+.sidebar-logo h1{
+
+    margin:0;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:46px;
+
+    font-weight:700;
+
+    color:#171717;
+
+}
+
+.sidebar-logo p{
+
+    margin-top:6px;
+
+    color:#7d8796;
+
+    font-size:14px;
+
+}
+
+/* ===================================================
+   CALENDAR
+=================================================== */
+
+.calendar-card{
+
+    margin-bottom:34px;
+
+}
+
+.calendar-paper{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    padding:22px;
+
+    background:
+
+        radial-gradient(
+            circle at 25% 25%,
+            rgba(255,255,255,.95),
+            transparent 55%
+        ),
+
+        radial-gradient(
+            circle at 80% 75%,
+            rgba(214,227,255,.75),
+            transparent 60%
+        ),
+
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #edf4ff
+        );
+
+    box-shadow:
+        0 15px 35px rgba(30,41,59,.06);
+
+}
+
+.calendar-paper::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:12px;
+
+    border-radius:24px;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(255,255,255,.8),
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(190,210,255,.28),
+            transparent 42%
+        );
+
+}
+
+.calendar-paper>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.calendar-paper h2{
+
+    margin:0;
+
+    text-align:center;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:42px;
+
+    color:#171717;
+
+}
+
+.calendar-paper span{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:2px;
+
+    margin-bottom:18px;
+
+    color:#7d8796;
+
+    font-size:14px;
+
+}
+
+.calendar-days{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:8px;
+
+    justify-items:center;
+
+}
+
+.calendar-days div{
+
+    width:30px;
+
+    height:30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    font-size:13px;
+
+    transition:.25s;
+
+}
+
+.calendar-days div:hover{
+
+    background:#dfe8ff;
+
+}
+
+.active-day{
+
+    background:#171717;
+
+    color:white;
+
+    font-weight:600;
+
+}
+/* ===================================================
+   NAVIGATION
+=================================================== */
+
+.sidebar nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.sidebar-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:14px 18px;
+
+    border-radius:18px;
+
+    color:#606a7b;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+}
+
+.sidebar-item svg{
+
+    width:20px;
+
+    height:20px;
+
+}
+
+.sidebar-item:hover{
+
+    background:#ffffff;
+
+    color:#171717;
+
+    transform:translateX(6px);
+
+    box-shadow:
+        0 10px 24px rgba(15,23,42,.06);
+
+}
+
+.sidebar-item.active{
+
+    background:#171717;
+
+    color:white;
+
+    box-shadow:
+        0 14px 32px rgba(0,0,0,.18);
+
+}
+
+/* ===================================================
+   USER CARD
+=================================================== */
+
+.sidebar-user{
+
+    margin-top:28px;
+
+    padding-top:24px;
+
+    border-top:1px solid rgba(0,0,0,.06);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.avatar{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        #171717,
+        #444
+    );
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:
+        0 10px 24px rgba(0,0,0,.18);
+
+}
+
+.sidebar-user h4{
+
+    margin:0;
+
+    font-size:17px;
+
+    color:#171717;
+
+    font-weight:700;
+
+}
+
+.sidebar-user p{
+
+    margin-top:4px;
+
+    font-size:13px;
+
+    color:#8b8b8b;
+
+}
+
+/* ===================================================
+   SCROLLBAR
+=================================================== */
+
+.sidebar::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+
+    background:#d7dbe5;
+
+    border-radius:999px;
+
+}
+
+/* ===================================================
+   RESPONSIVE
+=================================================== */
+
+@media (max-width:1200px){
+
+.sidebar{
+
+    width:260px;
+
+    min-width:260px;
+
+    padding:22px;
+
+}
+
+.sidebar-logo h1{
+
+    font-size:40px;
+
+}
+
+.calendar-paper{
+
+    padding:18px;
+
+}
+
+.calendar-paper h2{
+
+    font-size:34px;
+
+}
+
+.calendar-days{
+
+    gap:6px;
+
+}
+
+.calendar-days div{
+
+    width:26px;
+
+    height:26px;
+
+    font-size:12px;
+
+}
+
+}
+
+@media (max-width:900px){
+
+.sidebar{
+
+    display:none;
+
+}
+
+}

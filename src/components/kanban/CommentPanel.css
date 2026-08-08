@@ -1,0 +1,35 @@
+.comment-panel {
+  padding: 20px;
+}
+
+.comment-list {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.comment-item {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.comment-item strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.comment-panel textarea {
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.comment-panel button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+}

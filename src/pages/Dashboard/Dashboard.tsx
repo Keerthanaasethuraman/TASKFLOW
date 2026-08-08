@@ -16,46 +16,40 @@ import StatCard from "../../components/StatCard/StatCard";
 import TaskCard from "../../components/TaskCard/TaskCard";
 import TodaySchedule from "../../components/TodaySchedule/TodaySchedule";
 import TaskForm from "../../features/TaskForm/TaskForm";
-
+import KanbanBoard from "../../components/kanban/KanbanBoard";
+import BacklogTable from "../../components/backlog/BacklogTable";
 import "./Dashboard.css";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  setTasks,
+  setLoading,
+  deleteTask as deleteTaskAction,
+  updateTask,
+} from "../../redux/taskSlice";
 
-type Task = {
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  priority: "High" | "Medium" | "Low";
-  completed: boolean;
-};
+import { setProjects } from "../../redux/projectSlice";
+import type { KanbanTask } from "../../components/kanban/kanbanTypes";
+import api from "../../services/api";
+
+ 
 
 export default function Dashboard() {
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    const saved = localStorage.getItem("tasks");
+ const dispatch = useAppDispatch();
 
-    if (saved) {
-      return JSON.parse(saved);
-    }
+const tasks = useAppSelector(
+  (state) => state.tasks.tasks
+);
 
-    return [
-      {
-        title: "Design Dashboard UI",
-        description: "Finish the premium dashboard layout.",
-        date: "Today",
-        time: "2:00 PM",
-        priority: "High",
-        completed: false,
-      },
-      {
-        title: "Connect Backend API",
-        description: "Integrate Express and MongoDB.",
-        date: "Tomorrow",
-        time: "11:00 AM",
-        priority: "Medium",
-        completed: false,
-      },
-    ];
-  });
+const loading = useAppSelector(
+  (state) => state.tasks.loading
+);
+  
+const user = useAppSelector(
+  (state) => state.auth.user
+);
 
+const firstName =
+  user?.name?.split(" ")[0] || "User";
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<
     "All" | "Pending" | "Completed"
@@ -65,76 +59,208 @@ export default function Dashboard() {
   const [editingIndex, setEditingIndex] =
     useState<number | null>(null);
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+ useEffect(() => {
+  fetchTasks();
+  fetchProjects();
+}, []);
+async function fetchTasks() {
 
-  const filteredTasks = useMemo(() => {
-    return tasks.filter((task) => {
-      const matchesSearch =
-        task.title
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        task.description
-          .toLowerCase()
-          .includes(search.toLowerCase());
+  try {
 
-      const matchesFilter =
-        filter === "All"
-          ? true
-          : filter === "Completed"
-          ? task.completed
-          : !task.completed;
+    dispatch(setLoading(true));
 
-      return matchesSearch && matchesFilter;
-    });
-  }, [tasks, search, filter]);
+    const res = await api.get("/tasks");
 
-  function saveTask(task: Omit<Task, "completed">) {
+    dispatch(setTasks(res.data.tasks));
+
+  } catch (err) {
+
+    console.error(err);
+
+  } finally {
+
+    dispatch(setLoading(false));
+
+  }
+
+}
+async function fetchProjects() {
+  try {
+    const res = await api.get("/projects");
+
+    dispatch(setProjects(res.data.projects));
+  } catch (err) {
+    console.error("Failed to fetch projects:", err);
+  }
+}
+
+
+ const filteredTasks = useMemo(() => {
+
+  return tasks.filter((task) => {
+
+    const matchesSearch =
+      task.title
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      task.description
+        .toLowerCase()
+        .includes(search.toLowerCase());
+
+    const matchesFilter =
+      filter === "All"
+        ? true
+        : filter === "Completed"
+        ? task.status === "Done"
+        : task.status !== "Done";
+
+    return matchesSearch && matchesFilter;
+
+  });
+
+}, [tasks, search, filter]);
+
+async function saveTask(task: {
+  title: string;
+  description: string;
+  priority: "High" | "Medium" | "Low";
+  date: string;
+  time: string;
+  project?: string;
+}) {
+  console.log("DASHBOARD SAVE TASK", task);
+
+  try {
+    // ================= EDIT TASK =================
+
     if (editingIndex !== null) {
-      const updated = [...tasks];
+      const existingTask = tasks[editingIndex];
 
-      updated[editingIndex] = {
-        ...task,
-        completed: updated[editingIndex].completed,
-      };
+      if (!existingTask?._id) return;
+      console.log("UPDATING TASK:", existingTask._id);
 
-      setTasks(updated);
-    } else {
-      setTasks([
-        ...tasks,
+      const res = await api.put(
+        `/tasks/${existingTask._id}`,
         {
-          ...task,
-          completed: false,
-        },
-      ]);
+          title: task.title,
+          description: task.description,
+          project: task.project,
+          priority: task.priority,
+          dueDate: task.date,
+          dueTime: task.time,
+        }
+      );
+      console.log("UPDATE RESPONSE:", res.data);
+
+      dispatch(updateTask(res.data.task));
+
+    } else {
+
+      // ================= CREATE TASK =================
+
+      if (!task.project) {
+        console.error("Please select a project.");
+        return;
+      }
+
+      const res = await api.post(
+        "/tasks",
+        {
+          title: task.title,
+          description: task.description,
+          project: task.project,
+          priority: task.priority,
+          dueDate: task.date,
+          dueTime: task.time,
+        }
+      );
+
+      dispatch(
+        setTasks([
+          ...tasks,
+          res.data.task,
+        ])
+      );
     }
 
     setModalOpen(false);
     setEditingIndex(null);
-  }
 
-  function completeTask(index: number) {
-    const updated = [...tasks];
-    updated[index].completed = !updated[index].completed;
-    setTasks(updated);
+  } catch (error) {
+    console.error(
+      "Failed to save task:",
+      error
+    );
   }
+}
+async function completeTask(taskId: string) {
+  const task = tasks.find(
+    (task) => task._id === taskId
+  );
 
-  function deleteTask(index: number) {
-    setTasks(tasks.filter((_, i) => i !== index));
+  if (!task) return;
+
+  const newStatus =
+    task.status === "Done"
+      ? "Todo"
+      : "Done";
+
+  try {
+    const res = await api.put(
+      `/tasks/${taskId}`,
+      {
+        status: newStatus,
+      }
+    );
+
+    dispatch(updateTask(res.data.task));
+
+  } catch (error) {
+    console.error(
+      "Failed to update task status:",
+      error
+    );
   }
+}
 
-  function editTask(index: number) {
-    setEditingIndex(index);
-    setModalOpen(true);
+
+async function deleteTask(taskId: string) {
+  try {
+    await api.delete(`/tasks/${taskId}`);
+
+    dispatch(
+      deleteTaskAction(taskId)
+    );
+
+  } catch (error) {
+    console.error(
+      "Failed to delete task:",
+      error
+    );
   }
+}
 
-  const completedTasks = tasks.filter(
-    (task) => task.completed
+
+function editTask(taskId: string) {
+  const index = tasks.findIndex(
+    (task) => task._id === taskId
+  );
+
+  if (index === -1) return;
+
+  setEditingIndex(index);
+  setModalOpen(true);
+}
+
+const completedTasks =
+  tasks.filter(
+    (task) => task.status === "Done"
   ).length;
 
-  const pendingTasks = tasks.length - completedTasks;
-
+const pendingTasks =
+  tasks.filter(
+    (task) => task.status !== "Done"
+  ).length;
   const stats = [
     {
       title: "Completed",
@@ -162,50 +288,49 @@ export default function Dashboard() {
     },
   ];
 return (
-  <div className="dashboard">
+  <>
 
     {/* ================= HEADER ================= */}
 
-    <section className="dashboard-header">
+<section className="dashboard-header">
 
-      <div className="header-left">
+  <div className="header-left">
 
-        <span className="welcome-text">
-          Welcome Back 👋
-        </span>
+    <span className="welcome-text">
+      Welcome Back 👋
+    </span>
 
-        <h1>Keerthana</h1>
+    <h1>{firstName}</h1>
 
-        <p>
-          Stay productive and make today count.
-        </p>
+    <p>
+      Stay productive and make today count.
+    </p>
 
-      </div>
+  </div>
 
-      <div className="header-right">
+  <div className="header-right">
 
-        <SearchBar
-          placeholder="Search tasks..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+    <SearchBar
+      placeholder="Search tasks..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
 
-        <Button
-          onClick={() => {
-            setEditingIndex(null);
-            setModalOpen(true);
-          }}
-        >
-          <Plus size={18} />
-          Add Task
-        </Button>
+    <Button
+      onClick={() => {
+        setEditingIndex(null);
+        setModalOpen(true);
+      }}
+    >
+      <Plus size={18} />
+      Add Task
+    </Button>
 
-      </div>
+  </div>
 
-    </section>
+</section>
 
-    {/* ================= STATS ================= */}
-
+{/* ================= STATS ================= */}
     <section className="stats-grid">
 
       {stats.map((stat) => (
@@ -252,26 +377,28 @@ return (
 
           ) : (
 
-            <div className="task-grid">
+         <div className="task-grid">
 
-              {filteredTasks.map((task, index) => (
+  {filteredTasks.map((task) => (
 
-                <TaskCard
-                  key={index}
-                  title={task.title}
-                  description={task.description}
-                  date={task.date}
-                  time={task.time}
-                  priority={task.priority}
-                  completed={task.completed}
-                  onComplete={() => completeTask(index)}
-                  onEdit={() => editTask(index)}
-                  onDelete={() => deleteTask(index)}
-                />
+    <TaskCard
+      key={task._id}
+      title={task.title}
+      description={task.description}
+      date={task.dueDate || "-"}
+      time={task.dueTime || "-"}
+      priority={task.priority}
+      completed={task.status === "Done"}
+      onComplete={() => completeTask(task._id)}
+      onEdit={() => editTask(task._id)}
+      onDelete={() => deleteTask(task._id)}
+    />
 
-              ))}
+  ))}
 
-            </div>
+</div>
+
+
 
           )}
 
@@ -301,40 +428,82 @@ return (
       </div>
 
     </section>
-          {/* ================= MODAL ================= */}
-
-      <Modal
-        open={modalOpen}
-        title={
-          editingIndex !== null
-            ? "Edit Task"
-            : "Create New Task"
+         <Modal
+  open={modalOpen}
+  title={
+    editingIndex !== null
+      ? "Edit Task"
+      : "Create New Task"
+  }
+  onClose={() => {
+    setModalOpen(false);
+    setEditingIndex(null);
+  }}
+>
+ <TaskForm
+  onSaveTask={saveTask}
+  onCancel={() => {
+    setModalOpen(false);
+    setEditingIndex(null);
+  }}
+  initialTask={
+    editingIndex !== null
+      ? {
+          title: tasks[editingIndex].title,
+          description: tasks[editingIndex].description,
+          date: tasks[editingIndex].dueDate || "",
+          time: tasks[editingIndex].dueTime || "",
+          priority: tasks[editingIndex].priority,
         }
-        onClose={() => {
-          setModalOpen(false);
-          setEditingIndex(null);
-        }}
-      >
-        <TaskForm
-          onSaveTask={saveTask}
-          onCancel={() => {
-            setModalOpen(false);
-            setEditingIndex(null);
-          }}
-          initialTask={
-            editingIndex !== null
-              ? {
-                  title: tasks[editingIndex].title,
-                  description: tasks[editingIndex].description,
-                  date: tasks[editingIndex].date,
-                  time: tasks[editingIndex].time,
-                  priority: tasks[editingIndex].priority,
-                }
-              : null
-          }
-        />
-      </Modal>
+      : null
+  }
+/>
 
-    </div>
-  );
+</Modal>
+
+{/* ================= KANBAN ================= */}
+
+{/* ================= KANBAN ================= */}
+
+<section
+  style={{
+    marginTop: "40px",
+  }}
+>
+
+  <h2
+    style={{
+      marginBottom: "20px",
+    }}
+  >
+    Kanban Board
+  </h2>
+
+  <KanbanBoard />
+
+</section>
+
+{/* ================= BACKLOG ================= */}
+
+<section
+  style={{
+    marginTop: "50px",
+  }}
+>
+
+  <h2
+    style={{
+      marginBottom: "20px",
+    }}
+  >
+    Backlog
+  </h2>
+
+  <BacklogTable />
+
+</section>
+
+</>  
+
+);
 }

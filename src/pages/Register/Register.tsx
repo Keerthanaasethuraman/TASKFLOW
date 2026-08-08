@@ -9,70 +9,129 @@ import {
   EyeOff,
 } from "lucide-react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import { register } from "../../services/authService";
 
 export default function Register() {
+  const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] =
-    useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const [showConfirmPassword, setShowConfirmPassword] =
     useState(false);
 
+  const [name, setName] = useState("");
+
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  const [confirmPassword, setConfirmPassword] =
+    useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const handleRegister = async () => {
+    if (!name || !email || !password || !confirmPassword) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const data = await register({
+        name,
+        email,
+        password,
+      });
+
+      alert(data.message);
+
+      navigate("/login");
+
+    } catch (error: any) {
+
+      alert(
+        error?.response?.data?.message ||
+        "Registration Failed"
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  };
+
   return (
-
     <div className="register-page">
-
       <div className="register-card">
 
+        {/* Brand */}
+
         <div className="brand">
-
           <h1>TaskFlow</h1>
-
           <p>Focus • Plan • Achieve</p>
-
         </div>
 
+        {/* Welcome */}
+
         <div className="welcome">
-
           <h2>Create Account ✨</h2>
-
           <p>
             Join TaskFlow and organize your work beautifully.
           </p>
-
         </div>
 
-        <div className="input-box">
+        {/* Name */}
 
+        <div className="input-box">
           <User size={18} />
 
           <input
             type="text"
             placeholder="Full Name"
+            value={name}
+            onChange={(e) =>
+              setName(e.target.value)
+            }
           />
-
         </div>
 
-        <div className="input-box">
+        {/* Email */}
 
+        <div className="input-box">
           <Mail size={18} />
 
           <input
             type="email"
             placeholder="Email Address"
+            value={email}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
           />
-
         </div>
 
-        <div className="input-box">
+        {/* Password */}
 
+        <div className="input-box">
           <Lock size={18} />
 
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
+            value={password}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
           />
 
           <button
@@ -82,17 +141,15 @@ export default function Register() {
               setShowPassword(!showPassword)
             }
           >
-
             {showPassword
-              ? <EyeOff size={18}/>
-              : <Eye size={18}/>}
-
+              ? <EyeOff size={18} />
+              : <Eye size={18} />}
           </button>
-
         </div>
 
-        <div className="input-box">
+        {/* Confirm Password */}
 
+        <div className="input-box">
           <Lock size={18} />
 
           <input
@@ -102,6 +159,12 @@ export default function Register() {
                 : "password"
             }
             placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) =>
+              setConfirmPassword(
+                e.target.value
+              )
+            }
           />
 
           <button
@@ -113,49 +176,45 @@ export default function Register() {
               )
             }
           >
-
             {showConfirmPassword
-              ? <EyeOff size={18}/>
-              : <Eye size={18}/>}
-
+              ? <EyeOff size={18} />
+              : <Eye size={18} />}
           </button>
-
         </div>
 
-        <Button>
+        {/* Register Button */}
 
-          Create Account
-
+        <Button
+          onClick={handleRegister}
+          disabled={loading}
+        >
+          {loading
+            ? "Creating..."
+            : "Create Account"}
         </Button>
 
+        {/* Divider */}
+
         <div className="divider">
-
           <span>OR</span>
-
         </div>
 
+        {/* Google */}
+
         <button className="google-btn">
-
           Continue with Google
-
         </button>
 
+        {/* Login */}
+
         <p className="login-link">
-
           Already have an account?{" "}
-
           <Link to="/login">
-
             Sign In
-
           </Link>
-
         </p>
 
       </div>
-
     </div>
-
   );
-
 }

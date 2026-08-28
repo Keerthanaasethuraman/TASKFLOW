@@ -1,0 +1,252 @@
+.calendar-page {
+  padding: 10px 0 40px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.calendar-header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.calendar-header p {
+  margin: 6px 0 0;
+  opacity: 0.65;
+}
+
+.calendar-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.calendar-card {
+  padding: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.calendar-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.calendar-toolbar h2 {
+  min-width: 180px;
+  margin: 0;
+  text-align: center;
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.today-btn {
+  margin-left: 10px;
+  padding: 8px 14px;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.calendar-weekdays,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-weekdays {
+  margin-bottom: 8px;
+}
+
+.calendar-weekdays div {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+.calendar-day {
+  min-height: 80px;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.calendar-day:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.calendar-day.empty {
+  border: none;
+  cursor: default;
+}
+
+.calendar-day.empty:hover {
+  transform: none;
+}
+
+.calendar-day.today {
+  border-color: rgba(99, 102, 241, 0.6);
+}
+
+.calendar-day.selected {
+  border: 2px solid rgba(99, 102, 241, 0.8);
+}
+
+.day-number {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.task-count {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 7px;
+  border-radius: 6px;
+  font-size: 10px;
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.selected-day-section {
+  margin-top: 28px;
+}
+
+.selected-day-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.selected-day-header p {
+  margin: 5px 0 18px;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.calendar-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendar-task {
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  border-radius: 12px;
+}
+
+.calendar-task-time {
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.calendar-task-info h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.calendar-task-info p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.calendar-priority,
+.calendar-status {
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.calendar-status.done {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.calendar-empty {
+  padding: 45px 20px;
+  text-align: center;
+  border: 1px dashed rgba(128, 128, 128, 0.3);
+  border-radius: 14px;
+}
+
+.calendar-empty h3 {
+  margin: 0 0 7px;
+}
+
+.calendar-empty p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+@media (max-width: 800px) {
+  .calendar-task {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .calendar-priority,
+  .calendar-status {
+    width: fit-content;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .calendar-grid {
+    gap: 4px;
+  }
+
+  .calendar-day {
+    min-height: 60px;
+    padding: 6px;
+  }
+
+  .calendar-task {
+    grid-template-columns: 1fr;
+  }
+}

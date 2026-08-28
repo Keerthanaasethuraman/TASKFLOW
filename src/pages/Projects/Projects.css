@@ -1,0 +1,115 @@
+.projects-page {
+  padding: 10px 0 40px;
+}
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.projects-header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+.projects-header p {
+  margin: 6px 0 0;
+  opacity: 0.65;
+}
+.add-project-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 9px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+  padding: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  border-radius: 14px;
+}
+.project-form input,
+.project-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d8dce5;
+  border-radius: 8px;
+  font: inherit;
+}
+.project-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.project-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.project-form-actions button {
+  padding: 9px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.project-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  border-radius: 14px;
+}
+.project-card h3 {
+  margin: 0 0 7px;
+}
+.project-card p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.65;
+}
+.delete-project-btn {
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.projects-empty {
+  padding: 50px 20px;
+  text-align: center;
+  border: 1px dashed rgba(128, 128, 128, 0.3);
+  border-radius: 14px;
+}
+.projects-empty h3 {
+  margin: 0 0 7px;
+}
+.projects-empty p {
+  margin: 0;
+  opacity: 0.6;
+}
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

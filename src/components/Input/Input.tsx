@@ -1,22 +1,22 @@
 import "./Input.css";
-import type { InputHTMLAttributes } from "react";
-
+import type { InputHTMLAttributes, ReactNode } from "react";
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
+  icon?: ReactNode;
 };
-
 function Input({
   label,
+  icon,
   ...props
 }: InputProps) {
   return (
-    <div className="input-group">
-      {label && (
-        <label className="input-label">
-          {label}
-        </label>
-      )}
-
+    <div className="form-group">
+     {label && (
+  <label className="input-label">
+    {icon}
+    {label}
+  </label>
+)}
       <input
         className="input-field"
         {...props}
@@ -24,5 +24,4 @@ function Input({
     </div>
   );
 }
-
 export default Input;

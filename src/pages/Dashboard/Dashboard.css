@@ -75,15 +75,13 @@
 /* =========================================
    STATS
 ========================================= */
-
-.stats-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:20px;
-
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 2;
 }
 
 /* =========================================
@@ -260,7 +258,6 @@ button:hover{
    CARD EFFECT
 ========================================= */
 
-.stat-card,
 .task-card,
 .next-up,
 .today-schedule{
@@ -368,7 +365,7 @@ button:hover{
 
     display:grid;
 
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:1fr;
 
     gap:28px;
 

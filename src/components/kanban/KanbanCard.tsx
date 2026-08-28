@@ -1,13 +1,10 @@
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
-
 import type { KanbanTask } from "./kanbanTypes";
-
 type Props = {
   task: KanbanTask;
   onClick?: (task: KanbanTask) => void;
 };
-
 function CardContent({ task }: Props) {
   return (
     <div className="kanban-card">
@@ -41,12 +38,10 @@ export function DragOverlayCard({
 }: Props) {
   return <CardContent task={task} />;
 }
-
 export default function KanbanCard({
   task,
   onClick,
 }: Props) {
-
   const {
     attributes,
     listeners,
@@ -57,14 +52,12 @@ export default function KanbanCard({
   } = useSortable({
     id: task._id,
   });
-
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.4 : 1,
     cursor: "grab",
   };
-
   return (
     <div
       ref={setNodeRef}

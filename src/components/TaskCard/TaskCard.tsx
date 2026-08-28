@@ -31,40 +31,95 @@ function TaskCard({
   onEdit,
   onDelete,
 }: TaskCardProps) {
+
+  // ================= DATE FORMAT =================
+
+  const formattedDate = date
+    ? new Date(date).toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      })
+    : "-";
+
+  // ================= TIME FORMAT =================
+
+  const formattedTime = time
+    ? (() => {
+        const [hours, minutes] = time.split(":");
+        const hour = Number(hours);
+
+        if (Number.isNaN(hour)) {
+          return time;
+        }
+
+        const period = hour >= 12 ? "PM" : "AM";
+        const displayHour =
+          hour % 12 || 12;
+
+        return `${displayHour}:${minutes} ${period}`;
+      })()
+    : "-";
+
   return (
-    <div className={`task-card ${completed ? "completed" : ""}`}>
-      <div className="task-header">
-        <div>
-          <h3 className="task-title">{title}</h3>
+    <div
+      className={`task-card ${
+        completed ? "completed" : ""
+      }`}
+    >
+
+      {/* ================= TASK INFO ================= */}
+
+      <div className="task-main">
+
+        <div className="task-info">
+
+          <h3>{title}</h3>
 
           <p className="task-description">
             {description}
           </p>
+
         </div>
 
-        <span className={`priority ${priority.toLowerCase()}`}>
+        <span
+          className={`priority ${priority.toLowerCase()}`}
+        >
           {priority}
         </span>
+
       </div>
 
+      {/* ================= FOOTER ================= */}
+
       <div className="task-footer">
+
         <div className="task-date">
+
           <span>
             <Calendar size={15} />
-            {date}
+            {formattedDate}
           </span>
 
           <span>
             <Clock size={15} />
-            {time}
+            {formattedTime}
           </span>
+
         </div>
 
+        {/* ================= ACTIONS ================= */}
+
         <div className="task-actions">
+
           <button
             className="task-btn"
             onClick={onComplete}
-            title="Complete"
+            title={
+              completed
+                ? "Mark as Todo"
+                : "Complete"
+            }
           >
             <Check size={18} />
           </button>
@@ -84,8 +139,11 @@ function TaskCard({
           >
             <Trash2 size={18} />
           </button>
+
         </div>
+
       </div>
+
     </div>
   );
 }

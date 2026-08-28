@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const projectSchema = new mongoose.Schema(
   {
     name: {
@@ -7,25 +6,21 @@ const projectSchema = new mongoose.Schema(
       required: [true, "Project name is required"],
       trim: true,
     },
-
     description: {
       type: String,
       default: "",
     },
-
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-
     members: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
     ],
-
     status: {
       type: String,
       enum: ["Active", "Completed", "Archived"],
@@ -36,5 +31,4 @@ const projectSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 module.exports = mongoose.model("Project", projectSchema);

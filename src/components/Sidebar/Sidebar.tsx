@@ -15,7 +15,7 @@ function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="sidebar">
+    <aside>
 
       {/* Logo */}
       <div>
@@ -31,58 +31,95 @@ function Sidebar() {
 
         <nav>
 
+          {/* Dashboard */}
           <div
             className={`sidebar-item ${
               location.pathname === "/dashboard"
                 ? "active"
                 : ""
             }`}
-            onClick={() => navigate("/dashboard")}
+            onClick={() =>
+              navigate("/dashboard")
+            }
           >
             <LayoutDashboard size={20} />
             Dashboard
           </div>
 
+          {/* Kanban */}
           <div
             className={`sidebar-item ${
               location.pathname === "/kanban"
                 ? "active"
                 : ""
             }`}
-            onClick={() => navigate("/kanban")}
+            onClick={() =>
+              navigate("/kanban")
+            }
           >
             <CheckSquare size={20} />
             Kanban
           </div>
 
+          {/* Today's Schedule */}
           <div
-            className="sidebar-item"
+            className={`sidebar-item ${
+              location.pathname ===
+              "/todays-schedule"
+                ? "active"
+                : ""
+            }`}
+            onClick={() =>
+              navigate("/todays-schedule")
+            }
           >
             <CalendarDays size={20} />
-            Calendar
+            Today's Schedule
           </div>
 
+          {/* Calendar */}
+         <div
+  className={`sidebar-item ${
+    location.pathname === "/calendar" ? "active" : ""
+  }`}
+  onClick={() => navigate("/calendar")}
+>
+  <CalendarDays size={20} />
+  Calendar
+</div>
+
+          {/* Projects */}
+         <div
+  className={`sidebar-item ${
+    location.pathname === "/projects" ? "active" : ""
+  }`}
+  onClick={() => navigate("/projects")}
+>
+  <FolderKanban size={20} />
+  Projects
+</div>
+
+          {/* Analytics */}
           <div
-            className="sidebar-item"
-          >
-            <FolderKanban size={20} />
-            Projects
-          </div>
+  className={`sidebar-item ${
+    location.pathname === "/analytics" ? "active" : ""
+  }`}
+  onClick={() => navigate("/analytics")}
+>
+  <ChartNoAxesCombined size={20} />
+  Analytics
+</div>
 
-          <div
-            className="sidebar-item"
-          >
-            <ChartNoAxesCombined size={20} />
-            Analytics
-          </div>
-
+          {/* Settings */}
           <div
             className={`sidebar-item ${
               location.pathname === "/settings"
                 ? "active"
                 : ""
             }`}
-            onClick={() => navigate("/settings")}
+            onClick={() =>
+              navigate("/settings")
+            }
           >
             <Settings size={20} />
             Settings

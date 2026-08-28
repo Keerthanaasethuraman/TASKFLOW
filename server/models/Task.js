@@ -1,17 +1,14 @@
 const mongoose = require("mongoose");
-
 const activitySchema = new mongoose.Schema(
   {
     action: {
       type: String,
       required: true,
     },
-
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-
     createdAt: {
       type: Date,
       default: Date.now,
@@ -19,20 +16,17 @@ const activitySchema = new mongoose.Schema(
   },
   { _id: false }
 );
-
 const commentSchema = new mongoose.Schema(
   {
     text: {
       type: String,
       required: true,
     },
-
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-
     createdAt: {
       type: Date,
       default: Date.now,
@@ -40,7 +34,6 @@ const commentSchema = new mongoose.Schema(
   },
   { _id: false }
 );
-
 const taskSchema = new mongoose.Schema(
   {
     title: {
@@ -48,30 +41,25 @@ const taskSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-
     description: {
       type: String,
       default: "",
     },
-
     project: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Project",
       required: true,
     },
-
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       default: null,
     },
-
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-
     status: {
       type: String,
       enum: [
@@ -82,7 +70,6 @@ const taskSchema = new mongoose.Schema(
       ],
       default: "Todo",
     },
-
     priority: {
       type: String,
       enum: [
@@ -92,7 +79,6 @@ const taskSchema = new mongoose.Schema(
       ],
       default: "Medium",
     },
-
     dueDate: {
       type: Date,
       default: null,
@@ -101,16 +87,13 @@ const taskSchema = new mongoose.Schema(
   type: String,
   default: "",
 },
-
     comments: [commentSchema],
-
     activity: [activitySchema],
   },
   {
     timestamps: true,
   }
 );
-
 module.exports = mongoose.model(
   "Task",
   taskSchema

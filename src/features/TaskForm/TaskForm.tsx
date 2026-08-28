@@ -1,11 +1,9 @@
 import "./TaskForm.css";
-
 import { useEffect, useState } from "react";
-
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { useAppSelector } from "../../redux/hooks";
-
+import { Clock } from "lucide-react";
 type Task = {
   title: string;
   description: string;
@@ -182,14 +180,14 @@ function TaskForm({
       {/* ================= TIME ================= */}
 
       <Input
-        label="Time"
-        type="time"
-        value={time}
-        onChange={(e) =>
-          setTime(e.target.value)
-        }
-      />
-
+  label="Time"
+  type="time"
+  icon={<Clock size={16} />}
+  value={time}
+  onChange={(e) =>
+    setTime(e.target.value)
+  }
+/>
       {/* ================= BUTTONS ================= */}
 
       <div className="task-form-buttons">

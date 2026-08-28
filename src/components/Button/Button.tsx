@@ -9,7 +9,6 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
 };
-
 function Button({
   children,
   variant = "primary",
@@ -26,5 +25,4 @@ function Button({
     </button>
   );
 }
-
 export default Button;

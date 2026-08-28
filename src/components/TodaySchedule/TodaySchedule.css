@@ -1,39 +1,313 @@
-.schedule-card {
-  background: white;
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.05);
+/* =========================================
+   TODAY'S SCHEDULE
+========================================= */
+
+.todays-schedule {
+  width: 100%;
+  padding: 10px 0 30px;
 }
 
-.schedule-card h2 {
-  margin: 0 0 24px;
-  color: #2f2f2f;
-}
 
-.schedule-item {
+/* =========================================
+   HEADER
+========================================= */
+
+.todays-schedule-header {
   display: flex;
-  gap: 18px;
-  padding: 16px 0;
-  border-bottom: 1px solid #ece7e2;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
 }
 
-.schedule-item:last-child {
-  border-bottom: none;
+.todays-schedule-header h1 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 700;
 }
+
+.todays-schedule-header p {
+  margin: 6px 0 0;
+
+  font-size: 14px;
+  opacity: 0.65;
+}
+
+
+/* =========================================
+   ADD TASK BUTTON
+========================================= */
+
+.add-task-btn {
+  border: none;
+
+  padding: 11px 18px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.add-task-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+
+/* =========================================
+   SCHEDULE LIST
+========================================= */
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+/* =========================================
+   TASK CARD
+========================================= */
+
+.schedule-task {
+  display: grid;
+
+  grid-template-columns: 90px 1fr auto;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 18px 20px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(128, 128, 128, 0.18);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.schedule-task:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(128, 128, 128, 0.35);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   TIME
+========================================= */
 
 .schedule-time {
-  min-width: 80px;
-  font-weight: 600;
-  color: #8a6a52;
+  font-size: 15px;
+
+  font-weight: 700;
+
+  text-align: center;
+
+  padding: 9px 8px;
+
+  border-radius: 8px;
+
+  background: rgba(128, 128, 128, 0.10);
 }
 
-.schedule-details h4 {
-  margin: 0;
+
+/* =========================================
+   TASK INFORMATION
+========================================= */
+
+.schedule-task-info {
+  min-width: 0;
+}
+
+.schedule-task-info h3 {
+  margin: 0 0 5px;
+
   font-size: 16px;
-  color: #2f2f2f;
+
+  font-weight: 650;
 }
 
-.schedule-details span {
-  font-size: 14px;
-  color: #7a7a7a;
+.schedule-task-info p {
+  margin: 0 0 10px;
+
+  font-size: 13px;
+
+  opacity: 0.65;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   META
+========================================= */
+
+.schedule-meta {
+  display: flex;
+
+  gap: 8px;
+}
+
+.schedule-meta span {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 4px 9px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  background: rgba(128, 128, 128, 0.12);
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.schedule-actions {
+  display: flex;
+
+  gap: 8px;
+
+  align-items: center;
+}
+
+.schedule-actions button {
+  border: 1px solid rgba(128, 128, 128, 0.2);
+
+  background: transparent;
+
+  padding: 8px 12px;
+
+  border-radius: 7px;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.schedule-actions button:hover {
+  background: rgba(128, 128, 128, 0.12);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-schedule {
+  text-align: center;
+
+  padding: 60px 20px;
+
+  border-radius: 14px;
+
+  border: 1px dashed rgba(128, 128, 128, 0.3);
+}
+
+.empty-schedule h3 {
+  margin: 0 0 8px;
+
+  font-size: 18px;
+}
+
+.empty-schedule p {
+  margin: 0;
+
+  font-size: 13px;
+
+  opacity: 0.6;
+}
+
+
+/* =========================================
+   TASK FORM
+========================================= */
+
+.schedule-form {
+  margin-bottom: 24px;
+
+  padding: 22px;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(128, 128, 128, 0.18);
+
+  background: rgba(255, 255, 255, 0.03);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .schedule-task {
+    grid-template-columns: 75px 1fr;
+  }
+
+  .schedule-actions {
+    grid-column: 2;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .todays-schedule-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 16px;
+  }
+
+  .schedule-task {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .schedule-time {
+    text-align: left;
+
+    width: fit-content;
+  }
+
+  .schedule-actions {
+    grid-column: auto;
+  }
 }

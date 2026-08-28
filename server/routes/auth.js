@@ -4,7 +4,7 @@ const {
   registerUser,
   loginUser,
   getUsers,
-} = require("../controllers/authController");
+} = require("../controllers/authcontroller");
 console.log("registerUser:", registerUser);
 console.log("loginUser:", loginUser);
 // Register Route

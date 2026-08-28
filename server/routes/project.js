@@ -7,7 +7,7 @@ const {
   getProjectById,
   updateProject,
   deleteProject,
-} = require("../controllers/projectController");
+} = require("../controllers/projectcontroller");
 // Create Project
 router.post("/", protect, createProject);
 // Get All Projects

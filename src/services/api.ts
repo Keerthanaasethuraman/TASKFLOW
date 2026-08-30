@@ -1,12 +1,10 @@
 import axios from "axios";
-
 const api = axios.create({
-  baseURL: "http://127.0.0.1:5000/api",
+  baseURL: "https://taskflow-gaiw.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
 });
-
 // Automatically attach JWT token
 api.interceptors.request.use(
   (config) => {
@@ -15,10 +13,8 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-
     return config;
   },
   (error) => Promise.reject(error)
 );
-
 export default api;

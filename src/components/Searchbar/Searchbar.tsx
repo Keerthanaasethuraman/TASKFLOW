@@ -1,4 +1,4 @@
-import "./SearchBar.css";
+import "./Searchbar.css";
 
 import type { InputHTMLAttributes } from "react";
 import { Search } from "lucide-react";

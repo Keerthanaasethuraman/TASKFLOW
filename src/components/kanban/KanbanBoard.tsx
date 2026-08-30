@@ -23,7 +23,7 @@ import {
   COLUMN_ORDER,
   createEmptyColumns,
 } from "./utils";
-import "./KanbanBoard.css";
+import "./kanbanBoard.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   setTasks,
